@@ -1,0 +1,9 @@
+{
+    "prettier.proseWrap": "always",
+    "prettier.quoteProps": "preserve",
+    "prettier.useTabs": true,
+    "prettier.arrowParens": "always",
+    "editor.wordWrap": "on",
+    "editor.defaultFormatter": "vscode.configuration-editing",
+    "editor.formatOnSave": true
+}

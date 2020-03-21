@@ -1,0 +1,10 @@
+    
+import gql from 'graphql-tag'
+
+query directions {
+  getRouteMap{
+    _id
+    direction
+    time
+  }
+}
