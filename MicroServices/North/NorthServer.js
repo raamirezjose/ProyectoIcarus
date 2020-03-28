@@ -43,8 +43,37 @@ app.post("/postroutemap", (req, res) => {
   db.once("open", () => {
     route.save((err, routes) => {
       if (err) return console.error(err);
+      directionAMQT(JSON.stringify(route));
       res.json({ message: "ruta norte Registrado Correctamente" });
     });
   });
 });
+
+
+const directionAMQT = (directionJson) =>{
+  amqp.connect('amqp://localhost', function(error, connection) {
+    if (error) {
+      throw error;
+    }
+    connection.createChannel(function(error1, channel) {
+      if (error1) {
+        throw error1;
+      } 
+      let queue = 'directions_queue';
+      let direction = directionJson;  
+      channel.assertQueue(queue, {
+        durable: true
+      });
+      channel.sendToQueue(queue, Buffer.from(direction), {
+        persistent: true
+      });
+      console.log("Sent '%s'", direction);
+    });
+    setTimeout(function() {
+      connection.close();
+      process.exit(0)
+    }, 500);
+  });
+}
+ 
 
