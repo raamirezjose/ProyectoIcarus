@@ -70,7 +70,7 @@ const directionAMQT = (directionJson) =>{
     });
     setTimeout(function() {
       connection.close();
-      process.exit(0)
+    
     }, 500);
   });
 }

@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import routemap from "./models/routemap";
 import bodyParser from "body-parser";
-
+import amqp from 'amqplib/callback_api';
 const app = express();
 const mongoDb =  "westdb";
 const mongoPath= "mongodb://localhost";
@@ -70,7 +70,6 @@ const directionAMQT = (directionJson) =>{
     });
     setTimeout(function() {
       connection.close();
-      process.exit(0)
     }, 500);
   });
 }
