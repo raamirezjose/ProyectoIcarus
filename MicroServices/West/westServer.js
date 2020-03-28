@@ -37,8 +37,8 @@ app.post("/postroutemap", (req, res) => {
   var db = mongoose.connection;
   console.log(req.body);
   var route = new routemap({
-    direction: 1,
-    time: req.body.time
+    direction: 4,
+    date: new Date()
   });
   db.once("open", () => {
     route.save((err, routes) => {

@@ -2,13 +2,13 @@ export default `
   type RouteMap {
     _id: String!
     direction: Int
-    time : Int
+    date : Date
   }
   type Query {
     getRouteMap: [RouteMap!]!
   }
   type Mutation {
-    createRouteMap(direction: Int! time: Int!): RouteMap!
+    createRouteMap(direction: Int! date: Date!): RouteMap!
   }
   type Subscription {
     routeAdd: RouteMap

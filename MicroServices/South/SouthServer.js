@@ -23,7 +23,7 @@ app.set('port', process.env.PORT || 3300);
 
 const server = app.listen(app.get('port'),()=>{
   console.log('south serve on port',app.get('port'));
-});
+}); 
 
 app.post("/postroutemap", (req, res) => {
   mongoose
@@ -37,8 +37,8 @@ app.post("/postroutemap", (req, res) => {
   var db = mongoose.connection;
   console.log(req.body);
   var route = new routemap({
-    direction: 1,
-    time: req.body.time
+    direction: 3,
+    date: new Date()
   });
   db.once("open", () => {
     route.save((err, routes) => {

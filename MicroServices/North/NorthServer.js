@@ -38,7 +38,7 @@ app.post("/postroutemap", (req, res) => {
   console.log(req.body);
   var route = new routemap({
     direction: 2,
-    time: req.body.time
+    date: new Date()
   });
   db.once("open", () => {
     route.save((err, routes) => {
