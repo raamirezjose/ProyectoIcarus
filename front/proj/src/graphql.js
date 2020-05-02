@@ -6,7 +6,7 @@ export const ROUTE_QUERY = gql`
     getRouteMap{
          _id
         direction
-        time
+        date
   }
 }
 `
@@ -16,7 +16,7 @@ subscription {
   routeAdd{
         _id
         direction
-        time
+        date
   }
 }
 `

@@ -5,6 +5,6 @@ query directions {
   getRouteMap{
     _id
     direction
-    time
+    date
   }
 }
