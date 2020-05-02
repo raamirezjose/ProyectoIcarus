@@ -161,7 +161,7 @@ class MyApp extends StatelessWidget {
   }
 
   southPost() async {
-    String url = 'http://10.0.2.2:3300/postroutemap';
+    String url = 'http://192.168.0.6:3300/postroutemap';
     Map map = {
       'data': {'time': '2'},
     };
@@ -170,7 +170,7 @@ class MyApp extends StatelessWidget {
   }
 
   northPost() async {
-    String url = 'http://10.0.2.2:3200/postroutemap';
+    String url = 'http://192.168.0.6:3200/postroutemap';
     Map map = {
       'data': {'time': '3'},
     };
@@ -179,7 +179,7 @@ class MyApp extends StatelessWidget {
   }
 
   eastPost() async {
-    String url = 'http://10.0.2.2:3100/postroutemap';
+    String url = 'http://192.168.0.6:3100/postroutemap';
     Map map = {
       'data': {'time': '4'},
     };
@@ -188,7 +188,7 @@ class MyApp extends StatelessWidget {
   }
 
   westPost() async {
-    String url = 'http://10.0.2.2:3400/postroutemap';
+    String url = 'http://192.168.0.6:3400/postroutemap';
     Map map = {
       'data': {'time': '5'},
     };
