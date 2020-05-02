@@ -53,105 +53,22 @@ class MyApp extends StatelessWidget {
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[               
-                MaterialButton(
-                  textColor: Colors.white,
-                  splashColor: Colors.greenAccent,
-                  elevation: 8.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('images/flecha-arr.png'),
-                        
-                          fit: BoxFit.fill),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(50.0),  
-                                      
-                    ),
-                  ),
-                  // ),
-                  onPressed: () {
-                    print('North');
-                    northPost();
-                  },
-                )
-              ],
+              children: <Widget>[
+                getButton("North", 'images/flecha-arr.png' ,pAccion: () => [northPost()])
+                ],
+              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                getButton("West", 'images/flecha-izq.png' ,pAccion: () => [westPost()]),
+                getButton("Stop", 'images/stop.png' ,pAccion: () => [stopPost()]),
+                getButton("East", 'images/flecha-derecha.png' ,pAccion: () => [eastPost()]) 
+                ], 
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                MaterialButton(
-                  textColor: Colors.white,
-                  splashColor: Colors.greenAccent,
-                  elevation: 8.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('images/flecha-izq.png'),
-                        
-                          fit: BoxFit.fill),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(50.0),  
-                                      
-                    ),
-                  ),
-                  // ),
-                  onPressed: () {
-                    westPost();
-                    print('West');
-                  },
-                ),
-                MaterialButton(
-                  textColor: Colors.white,
-                  splashColor: Colors.greenAccent,
-                  elevation: 8.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('images/flecha-derecha.png'),
-                        
-                          fit: BoxFit.fill),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(50.0),  
-                                      
-                    ),
-                  ),
-                  // ),
-                  onPressed: () {
-                    print('East');
-                    eastPost();
-                  },
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[               
-                MaterialButton(
-                  textColor: Colors.white,
-                  splashColor: Colors.greenAccent,
-                  elevation: 8.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('images/flecha-aba.png'),
-                        
-                          fit: BoxFit.fill),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(50.0),  
-                                      
-                    ),
-                  ),
-                  // ),
-                  onPressed: () {
-                    southPost();
-                    print('South');
-                  },
-                )
+                getButton("South", 'images/flecha-aba.png' ,pAccion: () => [southPost()])
               ],
             )
           ],
@@ -161,7 +78,7 @@ class MyApp extends StatelessWidget {
   }
 
   southPost() async {
-    String url = 'http://192.168.0.6:3300/postroutemap';
+    String url = 'http://10.0.2.2:3300/postroutemap';
     Map map = {
       'data': {'time': '2'},
     };
@@ -170,7 +87,7 @@ class MyApp extends StatelessWidget {
   }
 
   northPost() async {
-    String url = 'http://192.168.0.6:3200/postroutemap';
+    String url = 'http://10.0.2.2:3200/postroutemap';
     Map map = {
       'data': {'time': '3'},
     };
@@ -179,7 +96,7 @@ class MyApp extends StatelessWidget {
   }
 
   eastPost() async {
-    String url = 'http://192.168.0.6:3100/postroutemap';
+    String url = 'http://10.0.2.2:3100/postroutemap';
     Map map = {
       'data': {'time': '4'},
     };
@@ -188,9 +105,18 @@ class MyApp extends StatelessWidget {
   }
 
   westPost() async {
-    String url = 'http://192.168.0.6:3400/postroutemap';
+    String url = 'http://10.0.2.2:3400/postroutemap';
     Map map = {
       'data': {'time': '5'},
+    };
+
+    print(await apiRequest(url, map));
+  }
+
+  stopPost() async {
+    String url = 'http://10.0.2.2:3500/postroutemap';
+    Map map = {
+      'data': {'time': '0'},
     };
 
     print(await apiRequest(url, map));
@@ -218,4 +144,28 @@ class MyApp extends StatelessWidget {
     httpClient.close();
     return reply;
   }
+
+  MaterialButton getButton(String pTexto, String pathImage, {Function pAccion}) {      
+      var oBoton = MaterialButton(
+        textColor: Colors.white,
+        splashColor: Colors.greenAccent,
+        elevation: 8.0, 
+        child: Container( 
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(pathImage),
+              fit: BoxFit.fill),
+          ),
+          child: Padding(
+              padding: const EdgeInsets.all(40.0), 
+          ),
+        ),
+        onPressed: () {
+          pAccion();
+          print(pTexto);
+        },
+      );
+
+      return oBoton;
+  }  
 }
