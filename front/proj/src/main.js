@@ -17,11 +17,11 @@ const wsClient = new SubscriptionClient('http://localhost:3000/graphql',{
 /* import { createProvider } from './vue-apollo' */
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3000/graphql'
+  uri: 'http://159.89.33.196:3000/graphql'
 })
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:3000/graphql',
+  uri: 'ws://159.89.33.196:3000/graphql',
   options: {
     reconnect: true
   }
@@ -41,7 +41,7 @@ const link = split(
 
 const apolloClient = new ApolloClient({
   link,
-  uri: "http://localhost:3000/graphql",
+  uri: "http://159.89.33.196:3000/graphql",
   cache: new InMemoryCache(),
   connectToDevTools: true
 })
