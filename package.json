@@ -14,6 +14,8 @@
     "graphql-tools": "^4.0.7",
     "mongodb": "^3.5.4",
     "mongoose": "^5.9.3",
+    "mosca": "^2.8.3",
+    "mqtt": "^4.0.1",
     "request": "^2.88.2",
     "socket.io": "^2.3.0",
     "subscriptions-transport-ws": "^0.9.16"

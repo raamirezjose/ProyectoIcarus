@@ -4,8 +4,22 @@ import RouteMap from './models/routemap';
 import mongoose from 'mongoose';
 import { mongoDb,port } from '../env';
 import http  from 'http';
+import mqtt from 'mqtt';
 
-const app = express();
+var client  = mqtt.connect('mqtt://159.89.33.196');
+
+export const conectionmqtt = (direction)=>{
+   
+  client.publish('JuggernautDirection', direction);
+  console.log(direction);
+};
+  
+client.on('connect', function () {
+ 
+});  
+
+
+const app = express(); 
 
 mongoose.connect(`mongodb://localhost/${mongoDb}`,{useNewUrlParser: true})
   .then(() => console.log(`conected to ${mongoDb}`))

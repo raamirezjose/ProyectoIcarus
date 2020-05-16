@@ -1,5 +1,6 @@
 import { PubSub } from 'apollo-server-express';
 import { withFilter } from 'graphql-subscriptions';
+import {conectionmqtt} from './prueba';
 const ROUTE_ADDED = 'ROUTE_ADDED';
 const pubsub = new PubSub();
 export default {
@@ -18,6 +19,7 @@ export default {
         const route = await new RouteMap(args).save();
         route._id = route._id.toString();
         pubsub.publish(ROUTE_ADDED, { routeAdd: route});
+        conectionmqtt(route.direction.toString());
         return route;
       }
     },
